@@ -8,6 +8,13 @@ body {
   background-color: #3c3c3c;
 }
 
+#change-cells-button {
+  display: block;
+  margin: 15px auto 10px auto;
+  padding: 5px;
+  border-radius: 8px;
+}
+
 h1 {
   font-size: 20px;
 }
@@ -20,7 +27,7 @@ h1 {
   border-radius: 20px 20px 10px 10px;
   width: 600px;
   aspect-ratio: 1/1;
-  margin: 25px auto 0 auto;
+  margin: 10px auto 0 auto;
 }
 
 #grid-container {
@@ -32,7 +39,6 @@ h1 {
 }
 
 .cell {
-  width: calc(100% / 16);
   aspect-ratio: 1/1;
   border: 1px solid #eee;
 }

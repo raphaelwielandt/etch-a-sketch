@@ -1,24 +1,38 @@
-window.addEventListener('load', () => {
-  const gridContainer = document.querySelector('#grid-container');
-
-  for (let row = 0; row < 16; row++) {
-    for (let col = 0; col < 16; col++) {
-      const cell = document.createElement('div');
-      cell.id = `cell-${row}-${col}`;
-      cell.classList.add('cell');
-      gridContainer.appendChild(cell);
-    }
-  }
-});
-
 const grid = document.querySelector('#etch-a-sketch');
 const handle = document.querySelector('.resize-handle');
 const h1 = document.querySelector('h1');
 const gridContainer = document.querySelector('#grid-container');
 
+window.addEventListener('load', () => {
+  createCells(16);
+});
+
+function createCells(cellsAmount) {
+  for (let row = 0; row < cellsAmount; row++) {
+    for (let col = 0; col < cellsAmount; col++) {
+      const cell = document.createElement('div');
+      cell.id = `cell-${row}-${col}`;
+      cell.classList.add('cell');
+      cell.style.width = `calc(100% / ${cellsAmount})`;
+      gridContainer.appendChild(cell);
+    }
+  }
+}
+
 let isResizing = false;
 let isPainting = false;
 let lastPaintedCell = null;
+
+const changeCellsAmount = document.querySelector('#change-cells-button');
+
+changeCellsAmount.addEventListener('click', (e) => {
+  let cellAmount = parseInt(prompt('How many squares per side of the grid ?'));
+
+  if (cellAmount >= 0 && cellAmount <= 100) {
+    gridContainer.innerHTML = '';
+    createCells(cellAmount);
+  }
+});
 
 function paintCell(cell) {
   if (!cell.classList.contains('cell')) return;
@@ -36,13 +50,11 @@ function paintCell(cell) {
 
 gridContainer.addEventListener('mousedown', (e) => {
   e.preventDefault(); //prevent cell from being draggable
-  console.log(e.target.id);
   isPainting = true;
   paintCell(e.target);
 });
 
 gridContainer.addEventListener('mousemove', (e) => {
-  console.log(e.target.id);
   if (isPainting && e.target !== lastPaintedCell) {
     paintCell(e.target);
     lastPaintedCell = e.target;
