@@ -1,0 +1,72 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #3c3c3c;
+}
+
+h1 {
+  font-size: 20px;
+}
+
+#etch-a-sketch {
+  position: relative;
+  padding: 5px 10px 10px 10px;
+  background-color: #f74f4fb6;
+  text-align: center;
+  border-radius: 20px 20px 10px 10px;
+  width: 600px;
+  aspect-ratio: 1/1;
+  margin: 25px auto 0 auto;
+}
+
+#grid-container {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid #ccc;
+  width: 100%;
+  background-color: white;
+}
+
+.cell {
+  width: calc(100% / 16);
+  aspect-ratio: 1/1;
+  border: 1px solid #eee;
+}
+
+.resize-handle {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  width: 20px;
+  height: 20px;
+  pointer-events: auto;
+  cursor: nwse-resize;
+
+  background:
+    /* largest line */ linear-gradient(
+      -45deg,
+      transparent 65%,
+      #666 65%,
+      #666 70%,
+      transparent 70%
+    ),
+    /* middle line */
+      linear-gradient(
+        -45deg,
+        transparent 80%,
+        #666 80%,
+        #666 85%,
+        transparent 85%
+      );
+
+  background-repeat: no-repeat;
+
+  /* Positioning each line */
+  background-position: 12px 12px, 16px 16px;
+
+  background-size: 12px 12px, 10px 10px;
+}
